@@ -258,3 +258,19 @@ else
 {
     Console.WriteLine("Error: Este parser simplificado solo resuelve operaciones con el signo '+'.");
 }
+
+/*
+**cadenaPrincipal.Length: Propiedad nativa que te tira la cantidad exacta de caracteres que tiene el texto. 
+
+**string.Concat(a, b): Método oficial para pegar dos o más cadenas de texto en bloque.
+
+**cadena.Substring(inicio, longitud): Extrae un pedazo de texto empezando desde la posición que le digas.
+
+**foreach (char caracter in cadena): Como en C# los strings son internamente colecciones de objetos Char de solo lectura ,
+   los podés recorrer directamente con un bucle foreach renglón por renglón sin necesidad de usar un clásico índice i de un for. 
+
+**cadena.Split('+'): Esta función es una locura de cómoda.
+  Agarra un texto largo y lo corta en pedazos cada vez que encuentra el carácter separador que vos le indiques,
+  guardando los fragmentos adentro de un arreglo de strings (string[]).
+  Es la herramienta ideal que te pedía la cátedra para romper "582+2" en dos números limpios sueltos. 
+*/
