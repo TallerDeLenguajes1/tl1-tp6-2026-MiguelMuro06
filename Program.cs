@@ -118,6 +118,7 @@ La variable numero: Si la conversión del texto sale bien, int.TryParse inyecta 
 Si la conversión falla (porque metieron letras), automáticamente le asigna un 0 por seguridad. 
 
 */
+/*
 using System;
 
 Console.WriteLine("Ingrese un numero entero mayor que cero: ");
@@ -151,5 +152,109 @@ else
 {
     Console.WriteLine("Error: La entrada ingresada no es un número entero válido");
 }
+*/
+
+using System;
+
+//Ingresa la oracion
+Console.Write("Ingrese una oracion o una frase: ");
+string oracion = Console.ReadLine();
+
+//longitud de la cadena
+int longitud = oracion.Length;
+Console.WriteLine($"La longitud de la cadena es: {longitud}");
 
 
+//ingresamos la 2da oracion o frase
+Console.Write("Ingrese una 2da oracion o frase: ");
+string oracionSecundaria = Console.ReadLine();
+
+//Concatenamos la cadena
+string cadenaConcatenada = string.Concat(oracion," " , oracionSecundaria);
+Console.WriteLine($"Cadena Concatenada: {cadenaConcatenada}");
+
+//3. Extraer la subcadena
+
+int extraer = Math.Min(5, longitud);
+string subcadena= oracion.Substring(0, extraer);
+Console.WriteLine($"Extraimos esta cantidad de caracteres {extraer} y la subcadena es la siguiente: {subcadena}");
+
+// 4. Simulamos la calculadora y mostramos el metodo ToString()
+double num1 = 582 , num2 = 2;
+double resultado = num1 + num2 ;
+string mensajeCalculadora = $"la suma de {num1.ToString()} y de {num2.ToString()} es igual a: {resultado.ToString()}";
+Console.WriteLine($"\n4. Simulación Calculadora (ToString): {mensajeCalculadora}");
+
+// 5. Recorrer la cadena con un ciclo Foreach elemento por elemento
+Console.WriteLine("Recorriendo la cadenade caracter por caracter con foreach:");
+foreach ( char caracter in oracion)
+{
+    Console.Write($"[{caracter}]");
+}
+Console.WriteLine();
+
+//6. Buscar la ocurrencia de una palabra determinada
+Console.Write("Ingrese una palabra para buscar en la frase del inicio: ");
+string palabraBuscar = Console.ReadLine();
+bool contienePalabra = oracion.Contains(palabraBuscar);
+
+// También buscamos en qué índice empieza usando IndexOf
+int posicion = oracion.IndexOf(palabraBuscar);
+
+if (contienePalabra)
+{
+    Console.WriteLine($"¡Palabra encontrada! Comienza en el índice de posición: {posicion}");
+}
+else
+{
+    Console.WriteLine("La palabra no se encuentra en la cadena original.");
+}
+
+// 7. Convertir la cadena en minuscula o mayuscula
+Console.WriteLine($"Cadena en MAYUSCULA: {oracion.ToUpper()} ");
+Console.WriteLine($"Cadena en minuscula: {oracion.ToLower()} ");
+
+// 8. Ingrese una cadena separada por caracteres y mostrar el resultado de Split()
+Console.WriteLine("\n Probando el metodo split():");
+Console.Write("Ingrese palabras separadas por comas (termo,yerba,azucar):");
+string cadenaSeparar = Console.ReadLine();
+string[] resultadoSplit = cadenaSeparar.Split(",");
+foreach (string elemento in resultadoSplit)
+{
+    Console.WriteLine($"- {elemento.Trim()}"); // Trim quita espacios sobrantes a los costados
+}
+
+Console.WriteLine("\n--- PARSER DE ECUACIONES SIMPLES ---");
+Console.Write("Ingrese una ecuación simple de suma (ej: 582+2): ");
+string ecuacion = Console.ReadLine();
+
+// Buscamos si la cadena contiene el signo '+' para procesarla
+if (ecuacion.Contains("+"))
+{
+    // Usamos Split para picar la cadena en dos partes usando el '+' como cuchillo
+    string[] operandos = ecuacion.Split('+');
+
+    // Verificamos que efectivamente tengamos dos partes de texto
+    if (operandos.Length == 2)
+    {
+        double n1 = 0, n2 = 0;
+        // Validamos que ambos bloques de texto sean números reales válidos
+        if (double.TryParse(operandos[0].Trim(), out n1) && double.TryParse(operandos[1].Trim(), out n2))
+        {
+            double sumaEcuacion = n1 + n2;
+            Console.WriteLine($"Resultado de resolver la ecuación: {n1} + {n2} = {sumaEcuacion}");
+        }
+        else
+        {
+            Console.WriteLine("Error: Los operandos de la ecuación no son números válidos.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Error: Formato de ecuación incorrecto.");
+    }
+}
+else
+{
+    Console.WriteLine("Error: Este parser simplificado solo resuelve operaciones con el signo '+'.");
+}
